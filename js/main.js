@@ -35,13 +35,27 @@ function abortOrder() {
     master.classList.remove('active');
 }
 
+// FUNGSI ALERT CUSTOM
+function showAlert(message) {
+    document.getElementById('alertMessage').innerText = message;
+    document.getElementById('customAlert').style.display = 'flex';
+}
+
+function closeAlert() {
+    document.getElementById('customAlert').style.display = 'none';
+}
+
+// UPDATE FUNGSI SEND ORDER
 function sendOrder() {
     const paket = document.getElementById('p_name').value;
     const user = document.getElementById('p_user').value;
     const email = document.getElementById('p_email').value;
     const orderId = "KAEL-X" + Math.floor(100000 + Math.random() * 900000);
 
-    if(!user || !email) return alert("ACCESS DENIED: Data Incomplete!");
+    if(!user || !email) {
+        showAlert("ACCESS DENIED: Harap isi semua data sebelum melanjutkan!");
+        return;
+    }
 
     const msg = `[SYSTEM LOG - KAEL STORE]
 Status: SUCCESSFUL PAYMENT
@@ -56,6 +70,11 @@ Note: Bukti transfer sudah terlampir.`;
     window.open(`https://wa.me/${WA_ADMIN}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
+// UPDATE FUNGSI INFO
 function showInfo(type) {
-    alert(`[SYSTEM MESSAGE]\n${type.toUpperCase()} module is under high-level maintenance. Check WhatsApp for details.`);
+    if(type === 'faq') {
+        showAlert("FAQ: Panel aktif 30 hari. Garansi penuh jika server mati mendadak.");
+    } else if(type === 'garansi') {
+        showAlert("GARANSI: Klaim garansi via WA dengan menyertakan bukti Order ID.");
+    }
 }
