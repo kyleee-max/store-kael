@@ -1,37 +1,37 @@
-/* KAEL-STORE ELITE v2.6 - SYSTEM SANS EDITION */
+/* KAEL-STORE ELITE v2.7 - ABSOLUTE SYSTEM SANS */
 :root {
     --neon: #00e5ff;
     --neon-dark: #0070f3;
     --bg: #030303;
     --panel: #0a0a0c;
     --border: #1a1a1d;
-    /* System Font Stack: Apple, Windows, Android, Linux */
-    --font-normal: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    /* Font standar Windows/Mac/Android */
+    --font-standard: sans-serif; 
 }
 
+/* PAKSA SEMUA ELEMEN PAKE FONT BIASA */
 * { 
     box-sizing: border-box; 
     margin: 0; 
     padding: 0; 
-    font-family: var(--font-normal);
+    font-family: var(--font-standard) !important;
 }
 
 body { 
     background: var(--bg); 
     color: #fff; 
-    overflow-x: hidden; 
-    min-height: 100vh;
-    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    line-height: 1.5;
 }
 
-/* Background Deep Glow */
+/* Background Effect Tetap HD */
 body::before {
     content: ""; position: fixed; width: 100%; height: 100%;
     background: radial-gradient(circle at 50% 50%, #001d3d 0%, transparent 85%);
     opacity: 0.4; z-index: -1;
 }
 
-/* Scanner Line HD */
+/* Scanner Line Neon */
 .scanner-line {
     position: fixed; top: 0; left: 0; width: 100%; height: 2px;
     background: var(--neon); box-shadow: 0 0 15px var(--neon);
@@ -39,71 +39,52 @@ body::before {
 }
 @keyframes scan { 0% { top: -2%; } 100% { top: 100%; } }
 
-/* Navbar */
+/* Header */
 .navbar {
-    display: flex; justify-content: space-between; align-items: center; padding: 20px 5%;
-    border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.8); backdrop-filter: blur(15px);
-    position: sticky; top: 0; z-index: 1000;
+    display: flex; justify-content: space-between; align-items: center; padding: 15px 5%;
+    border-bottom: 1px solid var(--border); background: #000;
 }
-.logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em; }
+.logo { font-weight: bold; font-size: 1.5rem; }
 .logo span { color: var(--neon); }
+.nav-links a { color: #888; text-decoration: none; margin-left: 20px; font-size: 0.9rem; }
 
-.nav-links a { 
-    color: #888; text-decoration: none; margin-left: 25px; 
-    font-weight: 600; font-size: 0.85rem; transition: 0.3s; 
-}
-.nav-links a:hover { color: var(--neon); }
-
-/* Master Split Layout */
-.master-container { display: flex; width: 100%; transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1); }
-.catalog-panel { width: 100%; padding: 60px 5%; transition: 0.5s; flex-shrink: 0; }
-
+/* Split Screen Logic */
+.master-container { display: flex; width: 100%; transition: 0.5s; }
+.catalog-panel { width: 100%; padding: 40px 5%; flex-shrink: 0; }
 .split-panel { 
     width: 0; opacity: 0; background: var(--panel); border-left: 0px solid var(--neon);
     overflow: hidden; transition: 0.5s; height: 100vh; position: sticky; top: 0;
 }
 
-/* Split Active State */
-.master-container.active .catalog-panel { width: 60%; filter: brightness(0.3) blur(5px); pointer-events: none; }
-.master-container.active .split-panel { width: 40%; opacity: 1; border-left: 2px solid var(--neon); padding: 60px 40px; }
+.master-container.active .catalog-panel { width: 60%; filter: brightness(0.2); pointer-events: none; }
+.master-container.active .split-panel { width: 40%; opacity: 1; border-left: 2px solid var(--neon); padding: 40px; }
 
-/* Hero Section */
-.hero-hd { text-align: center; margin-bottom: 50px; }
-.hero-hd h1 { font-size: 3rem; font-weight: 800; margin-bottom: 10px; }
-.hero-hd p { color: #555; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
-
-/* Grid & Cards */
-.grid-hd { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+/* Product Cards */
+.hero-hd { text-align: center; margin-bottom: 40px; }
+.grid-hd { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
 .hd-card {
-    background: #0d0d0f; border: 1px solid var(--border); padding: 30px; border-radius: 12px;
-    text-align: center; transition: 0.3s ease; cursor: pointer;
+    background: #0d0d0f; border: 1px solid var(--border); padding: 25px; border-radius: 8px;
+    text-align: center; cursor: pointer;
 }
-.hd-card:hover { 
-    border-color: var(--neon); transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 229, 255, 0.15); 
-}
-.hd-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
-.hd-card .price { color: var(--neon); font-size: 1.8rem; font-weight: 800; display: block; }
+.hd-card:hover { border-color: var(--neon); box-shadow: 0 5px 15px var(--neon-dark); }
+.hd-card h3 { margin-bottom: 5px; font-size: 1.1rem; }
+.hd-card .price { color: var(--neon); font-size: 1.6rem; font-weight: bold; }
 
-/* Form Design */
-.panel-content h2 { font-weight: 800; margin-bottom: 30px; }
+/* Forms */
 .input-group { margin-bottom: 20px; }
-.input-group label { display: block; font-size: 0.7rem; font-weight: 700; color: #555; text-transform: uppercase; margin-bottom: 8px; }
-
+.input-group label { display: block; font-size: 0.8rem; color: #666; margin-bottom: 5px; }
 .input-group input {
-    width: 100%; background: #000; border: 1px solid var(--border); padding: 15px;
-    color: #fff; font-size: 1rem; border-radius: 8px; outline: none; transition: 0.3s;
+    width: 100%; background: #000; border: 1px solid var(--border); padding: 12px;
+    color: #fff; font-size: 1rem; outline: none; border-radius: 4px;
 }
-.input-group input:focus { border-color: var(--neon); box-shadow: 0 0 15px rgba(0, 229, 255, 0.2); }
+.input-group input:focus { border-color: var(--neon); }
 
 /* Buttons */
 .btn-main {
-    width: 100%; padding: 18px; background: var(--neon); color: #000;
-    font-weight: 800; border: none; border-radius: 8px; cursor: pointer; transition: 0.3s;
+    width: 100%; padding: 15px; background: var(--neon); color: #000;
+    font-weight: bold; border: none; cursor: pointer; border-radius: 4px;
 }
-.btn-main:hover { background: #fff; box-shadow: 0 5px 20px rgba(255,255,255,0.3); }
-
-.btn-cancel { width: 100%; padding: 15px; background: transparent; color: #ff4444; border: none; cursor: pointer; font-weight: 600; }
+.btn-cancel { width: 100%; padding: 10px; background: transparent; color: #ff4444; border: none; cursor: pointer; margin-top: 10px; }
 
 @media (max-width: 768px) {
     .master-container.active .catalog-panel { display: none; }
